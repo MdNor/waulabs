@@ -6,7 +6,7 @@ yum -y update && yum -y upgrade
 sudo su -c 'rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm'
 
 # Install necessary tools
-yum -y install htop iotop nethogz 
+yum -y install htop iotop nethogs
 
 # Install monit
 yum -y install monit
