@@ -10,6 +10,7 @@ yum -y install htop iotop nethogs
 
 # Install monit
 yum -y install monit
+chkconfig monit on
 
 # Configure monit
 mv /etc/monit.conf /etc/monit.conf.old
@@ -21,5 +22,18 @@ mv /etc/monit.d/service /etc/monit.d/service.old
 wget -c <URL> --output-document=/etc/monit.d/service
 
 monit start all
+
+# Install NFS & RPCbind
+yum -y install nfs* 
+yum -y install rpcbind* 
+chkconfig nfs on
+chkconfig rpcbind on
+
+# Configure NFS
+mkdir /cpanel
+echo "/cpanel 10.99.0.10(rw,sync,fsid=0)" >> /etc/exports
+
+service rpcbind restart
+service nfs restart
 
 exit
